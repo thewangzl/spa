@@ -1,0 +1,11 @@
+/*
+*	spa.avtr.css
+*	Avatar feature styles
+*/
+/* global $, spa */
+spa.avtr = (function(){
+
+	return {
+
+	};
+})();
