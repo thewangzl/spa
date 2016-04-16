@@ -196,7 +196,7 @@ spa.shell = (function(){
 		jqueryMap.$acct.text(login_user.name);
 	};
 	onLogout = function(event, logout_user){
-		jquery.$acct.text('Please sign-in');
+		jqueryMap.$acct.text('Please sign-in');
 	}
 
 	// end event handlers
@@ -226,6 +226,11 @@ spa.shell = (function(){
 			people_model	: spa.model.people
 		});
 		spa.chat.initModule(jqueryMap.$container);
+		spa.avtr.configModule({
+			chat_model	: spa.model.chat,
+			people_model: spa.model.people
+		});
+		spa.avtr.initModule(jqueryMap.$nav);
 
 		//handle URI anchor change events
 		$(window).bind('resize',onResize)
