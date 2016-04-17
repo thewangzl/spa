@@ -21,7 +21,7 @@ spa.model = (function(){
 			user			: null,
 			is_connected	: false
 		},
-		isFakeData = true,
+		isFakeData = false,
 		personProto, makeCid, clearPeopleDb, completeLogin,
 		makePerson, removePerson, people, chat, initModule;
 
@@ -120,10 +120,11 @@ spa.model = (function(){
 				name 	: name
 			});
 			sio.on('userupdate',completeLogin);
+			console.log(stateMap);
 			sio.emit('adduser', {
 				cid 	: stateMap.user.cid,
 				css_map	: stateMap.user.css_map,
-				name	: stateMap.css_map
+				name	: stateMap.user.name
 			});
 		};
 		logout = function(){

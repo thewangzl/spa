@@ -80,7 +80,8 @@ spa.avtr = (function(){
 	};
 	onHeldstartNav = function(event){
 		var offset_target_map, offset_nav_map,
-			$target = $(event.elem_target).closest('.spa-avtr-box');
+			$target = $(event.target).closest('.spa-avtr-box');
+			
 			if($target.length === 0){
 				return false;
 			}
@@ -102,9 +103,10 @@ spa.avtr = (function(){
 		if(!drag_map){
 			return false;
 		}
-		drag_map.top += event.px_delta_y;
-		drag_map.left+= event.px_delta_x;
-		stateMap.$drag_map.css({
+		console.dir(event);
+		drag_map.top += event.offsetY;
+		drag_map.left+= event.offsetX;
+		stateMap.$drag_target.css({
 			top : drag_map.top,
 			left : drag_map.left
 		})
@@ -119,7 +121,7 @@ spa.avtr = (function(){
 
 		stateMap.drag_bg_color = undefined;
 		stateMap.$drag_target = null;
-		statm.drag_map = null;
+		stateMap.drag_map = null;
 		updateAvatar($drag_target);
 	};
 	onSetchatee = function(event, arg_map){
@@ -200,9 +202,9 @@ spa.avtr = (function(){
 
 		//bind actions
 		$container.bind('utap',		onTapNav)
-					.bind('uheldstart', onHeldstartNav)
-					.bind('uheldmove', onHeldmoveNav)
-					.bind('uheldend', onHeldendNav);
+					.bind('mousedown', onHeldstartNav)
+					.bind('mousemove', onHeldmoveNav)
+					.bind('mouseup', onHeldendNav);
 		return true;
 	}
 	//-------------------------End public methods------------
