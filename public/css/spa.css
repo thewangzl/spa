@@ -1,0 +1,94 @@
+/*
+*spa.css
+*Root namespace styles
+*/
+h1, h2, h3, h4, h5, h6, p{
+	margin-bottom: 6pt;
+}
+ol, ul, dl{
+	list-style-position: inside;
+}
+
+*{
+	-webkit-user-select	: none;
+	-khtml-user-select	: none;
+	-moz-user-select	: -moz-none;
+	-o-user-select	: none;
+	-ms-user-select	: none;
+	user-select	: none;
+
+	-webkit-user-drap	: none;
+	-moz-user-drap	: none;
+	user-drap	: none;]
+
+	-webkit-tap-highlight-color	: transparent;
+	-webkit-touch-callout		: none;
+}
+input, textarea, spa-x-select{
+	-webkit-user-select	: text;
+	-khtml-user-select	: text;
+	-moz-user-select	: text;
+	-o-user-select	: text;
+	-ms-user-select	: text;
+	user-select	: text;
+}
+
+body {
+	font: 10pt 'Trebucher MS', Verdana, Helvetica, Arial, sans-serif;
+	color : #444;
+	background-color: #888;
+}
+
+a{
+	text-decoration: none;
+}
+a:link, a:visited{
+	color:inherit;
+}
+a:hover{
+	text-decoration: underline;
+}
+strong{
+	font-weight: 800;
+	color: #000;
+}
+#spa {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	bottom: 8px;
+	right: 8px;
+	background: #fff;
+	min-height: 15em;
+	min-width: 35em;
+	overflow: hidden;
+	border-radius: 8px 8px 0 8px;
+}
+
+/** Begin spa namespace selectors **/
+.spa-slider {
+	position: absolute;
+	bottom: 0px;
+	right: 2px;
+	width: 300px;
+	height: 16px;
+	min-height: 500px;
+	min-width: 500px;
+	overflow: hidden;
+	border-radius: 0 8px 0 8px;
+	background-color: #fff;
+}
+/** End spa namespace selectors **/
+
+/** Begin utility selectors **/
+.spa-x-select{
+
+}
+
+.spa-x-clearfloat{
+	height: 0			!important;
+	float: none 		!important;
+	visibility: hidden  !important;
+	clear: both 		!important;
+}
+/** End utility selectors **/
