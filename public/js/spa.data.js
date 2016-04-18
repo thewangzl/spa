@@ -1,6 +1,6 @@
 /*
-*	spa.data.css
-*	Data feature styles
+*	spa.data.js
+*	Data 
 */
 /* jslink			browser: true,		continue:true,
 	devel: true,	indent:2,			maxerr : 50,

@@ -297,7 +297,7 @@ spa.chat = (function(){
 			if(chatee && chatee.id === person.id){
 				select_class = 'spa-x-select';
 			}
-			list_html += '<div class="spa-chat-list-name' 
+			list_html += '<div class="spa-chat-list-name ' 
 					+ select_class + '" data-id="' + person.id + '">'
 					+ spa.util_b.encodeHtml(person.name) + '</div>';
 		});

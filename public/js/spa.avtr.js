@@ -42,7 +42,7 @@ spa.avtr = (function(){
 		for(i = 0; i < 3; i++){
 			rgb_list.push(Math.floor(Math.random() * 128) + 128);
 		}
-		return 'rgb(' + rgb_list.join('.') + ')';
+		return 'rgb(' + rgb_list.join(',') + ')';
 	};
 	//-------------------------End utility methods------------
 	//-------------------------Begin DOM methods------------
@@ -68,7 +68,7 @@ spa.avtr = (function(){
 
 	onTapNav = function(event){
 		var css_map,
-			$target = $(event.elem_target).closest('spa-avtr-box');
+			$target = $(event.target).closest('.spa-avtr-box');
 
 		if($target.length === 0){
 			return false;
@@ -79,37 +79,37 @@ spa.avtr = (function(){
 		updateAvatar($target);
 	};
 	onHeldstartNav = function(event){
-		var offset_target_map, offset_nav_map,
+		var offset_target_map,
 			$target = $(event.target).closest('.spa-avtr-box');
 			
-			if($target.length === 0){
-				return false;
-			}
-			stateMap.$drag_target = $target;
-			offset_target_map = $target.offset();
-			offset_nav_map = jqueryMap.$container.offset();
-
-			offset_target_map.top -= offset_nav_map.top;
-			offset_target_map.left -= offset_nav_map.left;
-
-			stateMap.drag_map = offset_target_map;
-			stateMap.drag_bg_color = $target.css('background-color');
-
-			$target.addClass('spa-x-is-drag')
-					.css('background-color');
-	};
-	onHeldmoveNav = function(event){
-		var drag_map = stateMap.drag_map;
-		if(!drag_map){
+		if($target.length === 0){
 			return false;
 		}
-		console.dir(event);
-		drag_map.top += event.offsetY;
-		drag_map.left+= event.offsetX;
+		stateMap.$drag_target = $target;
+		offset_target_map = {};
+		offset_target_map.top = event.pageY - parseInt($target.css('top'));
+		offset_target_map.left = event.pageX - parseInt($target.css('left'));
+		stateMap.drag_map = offset_target_map;
+		stateMap.drag_bg_color = $target.css('background-color');
+
+		$target.addClass('spa-x-is-drag')
+				.css('background-color','');
+		return true;
+	};
+	onHeldmoveNav = function(event){
+		var left,right,
+			drag_map = stateMap.drag_map;
+		if(!drag_map || !stateMap.$drag_target){
+			return false;
+		}
+		var top = event.pageY - drag_map.top;
+		var left= event.pageX - drag_map.left;
+		$(".spa-shell-foot").text('(' + left + ',' +  top + ')');
 		stateMap.$drag_target.css({
-			top : drag_map.top,
-			left : drag_map.left
-		})
+			top : top,
+			left : left
+		});
+		return true;
 	};
 	onHeldendNav = function(event){
 		var $drag_target = stateMap.$drag_target;
@@ -123,6 +123,7 @@ spa.avtr = (function(){
 		stateMap.$drag_target = null;
 		stateMap.drag_map = null;
 		updateAvatar($drag_target);
+		return true;
 	};
 	onSetchatee = function(event, arg_map){
 		var
@@ -201,7 +202,7 @@ spa.avtr = (function(){
 		$.gevent.subscribe($container, 'spa-logout', onLogout);
 
 		//bind actions
-		$container.bind('utap',		onTapNav)
+		$container.bind('click',		onTapNav)
 					.bind('mousedown', onHeldstartNav)
 					.bind('mousemove', onHeldmoveNav)
 					.bind('mouseup', onHeldendNav);

@@ -12,6 +12,7 @@
 		"errorhandler": "1.4.x",
 		"socket.io"	: "1.4.x",
 		"mongodb"	: "2.1.x",
-		"JSV" : "4.0.x"
+		"JSV" : "4.0.x",
+		"redis" : "2.6.x"
 	}
 }

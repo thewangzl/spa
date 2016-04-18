@@ -60,7 +60,7 @@ spa.model = (function(){
 		//when we add chat, we should join here
 		$.gevent.publish('spa-login',[stateMap.user]);
 	}
-
+	//因为登陆和查询所用用户都会调用此方法，所以登录人会在nav重复显示
 	makePerson = function(person_map){
 		var person,
 			cid = person_map.cid,
@@ -120,7 +120,6 @@ spa.model = (function(){
 				name 	: name
 			});
 			sio.on('userupdate',completeLogin);
-			console.log(stateMap);
 			sio.emit('adduser', {
 				cid 	: stateMap.user.cid,
 				css_map	: stateMap.user.css_map,
@@ -289,7 +288,7 @@ spa.model = (function(){
 			join   : join_chat,
 			send_msg	: send_msg,
 			set_chatee	: set_chatee,
-			updateavatar : update_avatar
+			update_avatar : update_avatar
 		}
 	}());
 
