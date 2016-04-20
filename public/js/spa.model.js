@@ -169,7 +169,7 @@ spa.model = (function(){
 					continue PERSON;
 				}
 				//if user defined. update css_map and skip remainer
-				if(stateMap.user && stateMap.user.id === person_map.id){
+				if(stateMap.user && stateMap.user.id === person_map._id){
 					stateMap.user.css_map = person_map.css_map;
 					continue PERSON;
 				}
@@ -193,6 +193,7 @@ spa.model = (function(){
 		}
 		
 		_publish_listchange = function(arg_list){
+			console.dir(arg_list);
 			_update_list(arg_list);
 			$.gevent.publish('spa-listchange', [arg_list]);
 		};
